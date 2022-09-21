@@ -17,18 +17,16 @@ if (!class_exists('HortaDAV')) {
 
     class HortaDAV
     {
-
         function __construct()
         {
             register_activation_hook(__FILE__, array('HortaDAV', 'activate'));
             register_deactivation_hook(__FILE__, array('HortaDAV', 'deactivate'));
             register_uninstall_hook(__FILE__, array('HortaDAV', 'uninstall'));
 
-            add_action('init', array(&$this, 'register'));
+            add_action('init', array(&$this, 'init'));
 
-            // add_action('archive_template', array(&$this, 'event_archive'));
-            // add_action('page_template', array(&$this, 'archive_template'));
-            add_filter('the_content', array(&$this, 'archive_template'));
+            add_filter('the_content', array(&$this, 'set_archive_template'), 1);
+            add_filter('template_include', array(&$this, 'include_archive_template'));
 
             if (!is_admin()) {
                 add_action('wp_enqueue_scripts', array(&$this, 'enqueue_scripts'));
@@ -38,19 +36,28 @@ if (!class_exists('HortaDAV')) {
         static function activate()
         {
             require_once __DIR__ . '/post_types/horta_event.php';
+            hortadav_register_event();
 
             $data_path = plugin_dir_url(__FILE__) . 'data/calendar.json';
             $data = json_decode(file_get_contents($data_path), true);
 
             foreach ($data['VCALENDAR'][0]['VEVENT'] as $event) {
+                hortadav_register_term($event['TAXONOMIES']['FAMILY'], 'family');
+                hortadav_register_term($event['TAXONOMIES']['LIFECYCLE'], 'lifecycle');
+                hortadav_register_term($event['TAXONOMIES']['HARVEST_TIME'], 'harvest_time');
+                hortadav_register_term($event['TAXONOMIES']['SEEDING_DEPTH'], 'seeding');
+                hortadav_register_term($event['TAXONOMIES']['GERMINATION_DAYS'], 'germination');
+                hortadav_register_term($event['TAXONOMIES']['PLANTING_FRAME'], 'frame');
+                hortadav_register_term($event['TAXONOMIES']['LOCATION'], 'location');
+
                 hortadav_create_event(array(
                     'post_title' => $event['SUMMARY'],
                     'post_content' => $event['DESCRIPTION'],
                 ), array(
                     # 'event' => $event['TAXONOMIES']['EVENT'],
                     'family' => $event['TAXONOMIES']['FAMILY'],
-                    'category' => $event['TAXONOMIES']['CATEGORY'],
                     'lifecycle' => $event['TAXONOMIES']['LIFECYCLE'],
+                    'harvest_time' => $event['TAXONOMIES']['HARVEST_TIME'],
                     'seeding' => $event['TAXONOMIES']['SEEDING_DEPTH'],
                     'germination' => $event['TAXONOMIES']['GERMINATION_DAYS'],
                     'frame' => $event['TAXONOMIES']['PLANTING_FRAME'],
@@ -62,55 +69,75 @@ if (!class_exists('HortaDAV')) {
                 ));
             }
 
+            wp_insert_term('hortadav_archive', 'category');
             hortadav_create_archive();
         }
 
         static function deactivate()
         {
+            require_once __DIR__ . '/post_types/horta_event.php';
+
             hortadav_delete_events();
             hortadav_unregister_event();
             hortadav_delete_archive();
-            hortadav_unregister_archive();
+            wp_delete_category('hortadav_archive');
         }
 
         static function uninstall()
         {
         }
 
-        function register()
+        function init()
         {
             require_once __DIR__ . '/post_types/horta_event.php';
             hortadav_register_event();
-            hortadav_register_archive();
+
+            register_taxonomy_for_object_type('category', 'page');
         }
 
         function enqueue_scripts()
         {
-            wp_enqueue_script(
-                'hortadav_calendar_js',
-                // plugin_dir_url(__FILE__) . 'public/js/calendarJS/index.js',
-                'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.js',
-                array('jquery'),
-                '5.11.2',
-                true
-            );
-            wp_enqueue_style(
-                'hortadav_calendar_css',
-                // plugin_dir_url(__FILE__) . 'public/css/calendarJS/index.css',
-                'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.css',
-                array(),
-                '5.11.2',
-                'all'
-            );
+            if ((is_archive() && get_post_type() === 'hortadav_event') || has_category('hortadav_archive')) {
+                wp_enqueue_script(
+                    'fullcalendar-js',
+                    'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.js',
+                    array('jquery'),
+                    '5.11.2',
+                    true
+                );
+                wp_enqueue_style(
+                    'fullcalendar-css',
+                    'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.css',
+                    array(),
+                    '5.11.2',
+                    'all'
+                );
+
+                wp_enqueue_script(
+                    'hortadav_calendar_js',
+                    plugin_dir_url(__FILE__) . '/js/calendar.js',
+                    array('fullcalendar-js'),
+                    '1.0.0',
+                    true
+                );
+            }
         }
 
-        function archive_template()
+        function set_archive_template($content)
         {
-            global $post;
-
             if (has_category('hortadav_archive')) {
-                include __DIR__ . '/includes/calendar-content.php';
+                include WP_PLUGIN_DIR . '/' . plugin_basename(dirname(__FILE__)) . '/archive.php';
+                exit;
             }
+        }
+
+        function include_archive_template($template)
+        {
+            if (is_archive() && get_post_type() === 'hortadav_event') {
+                return WP_PLUGIN_DIR . '/' . plugin_basename(dirname(__FILE__)) . '/archive.php';
+            }
+
+            return $template;
         }
     }
 

@@ -13,36 +13,21 @@ if (!function_exists('hortadav_register_event')) {
             'description'   => 'Esdeveniment del calendari de llaura i sembra',
             'public'        => true,
             'menu_position' => 5,
-            'supports'      => array('title', 'editor', 'thumbnail', 'excerpt', 'comments'),
+            'supports'      => array('title', 'autor', 'editor', 'custom-fields', 'sticky', 'revisions'),
             'has_archive'   => true,
         );
 
         register_post_type('hortadav_event', $args);
-
-        /*
-        $labels = array(
-            'name'              => _x('Esdeveniments', 'taxonomy general name'),
-            'singular_name'     => _x('Esdeveniment', 'taxonomy singular name'),
-        );
-        $args   = array(
-            'hierarchical'      => false, // make it hierarchical (like categories)
-            'labels'            => $labels,
-            'show_ui'           => true,
-            'show_admin_column' => true,
-            'query_var'         => true,
-            'rewrite'           => ['slug' => 'event'],
-        );
-        register_taxonomy('event', ['hortadav_event'], $args);
-         */
 
         $labels = array(
             'name'              => _x('Families', 'taxonomy general name'),
             'singular_name'     => _x('Familia', 'taxonomy singular name'),
         );
         $args   = array(
-            'hierarchical'      => false, // make it hierarchical (like categories)
+            /* 'hierarchical'      => false, // make it hierarchical (like categories) */
+            'public'            => true,
             'labels'            => $labels,
-            'show_ui'           => true,
+            /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
             'rewrite'           => ['slug' => 'family'],
@@ -50,27 +35,29 @@ if (!function_exists('hortadav_register_event')) {
         register_taxonomy('family', ['hortadav_event'], $args);
 
         $labels = array(
-            'name'              => _x('Categories', 'taxonomy general name'),
-            'singular_name'     => _x('Categoria', 'taxonomy singular name'),
+            'name'              => _x('Cicles de vida', 'taxonomy general name'),
+            'singular_name'     => _x('Cicle de vida', 'taxonomy singular name'),
         );
         $args   = array(
-            'hierarchical'      => false, // make it hierarchical (like categories)
+            /* 'hierarchical'      => false, // make it hierarchical (like categories) */
+            'public'            => true,
             'labels'            => $labels,
-            'show_ui'           => true,
+            /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'category'],
+            'rewrite'           => ['slug' => 'lifecycle'],
         );
-        register_taxonomy('category', ['hortadav_event'], $args);
+        register_taxonomy('lifecycle', ['hortadav_event'], $args);
 
         $labels = array(
             'name'              => _x('Profunditats de sembra', 'taxonomy general name'),
             'singular_name'     => _x('Profunditat de sembra', 'taxonomy singular name'),
         );
         $args   = array(
-            'hierarchical'      => false, // make it hierarchical (like categories)
+            /* 'hierarchical'      => false, // make it hierarchical (like categories) */
+            'public'            => true,
             'labels'            => $labels,
-            'show_ui'           => true,
+            /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
             'rewrite'           => ['slug' => 'seeding'],
@@ -82,9 +69,10 @@ if (!function_exists('hortadav_register_event')) {
             'singular_name'     => _x('Temps de germinació o brotació', 'taxonomy singular name'),
         );
         $args   = array(
-            'hierarchical'      => false, // make it hierarchical (like categories)
+            /* 'hierarchical'      => false, // make it hierarchical (like categories) */
+            'public'            => true,
             'labels'            => $labels,
-            'show_ui'           => true,
+            /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
             'rewrite'           => ['slug' => 'germination'],
@@ -96,23 +84,25 @@ if (!function_exists('hortadav_register_event')) {
             'singular_name'     => _x('Durada fins a recol·lecció', 'taxonomy singular name'),
         );
         $args   = array(
-            'hierarchical'      => false, // make it hierarchical (like categories)
+            /* 'hierarchical'      => false, // make it hierarchical (like categories) */
+            'public'            => true,
             'labels'            => $labels,
-            'show_ui'           => true,
+            /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'lifecycle'],
+            'rewrite'           => ['slug' => 'harvest_time'],
         );
-        register_taxonomy('lifecycle', ['hortadav_event'], $args);
+        register_taxonomy('harvest_time', ['hortadav_event'], $args);
 
         $labels = array(
             'name'              => _x('Marcs de plantació', 'taxonomy general name'),
             'singular_name'     => _x('Marc de plantació', 'taxonomy singular name'),
         );
         $args   = array(
-            'hierarchical'      => false, // make it hierarchical (like categories)
+            /* 'hierarchical'      => false, // make it hierarchical (like categories) */
+            'public'            => true,
             'labels'            => $labels,
-            'show_ui'           => true,
+            /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
             'rewrite'           => ['slug' => 'frame'],
@@ -124,9 +114,10 @@ if (!function_exists('hortadav_register_event')) {
             'singular_name'     => _x('Localització', 'taxonomy singular name'),
         );
         $args   = array(
-            'hierarchical'      => false, // make it hierarchical (like categories)
+            /* 'hierarchical'      => false, // make it hierarchical (like categories) */
+            'public'            => true,
             'labels'            => $labels,
-            'show_ui'           => true,
+            /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
             'rewrite'           => ['slug' => 'location'],
@@ -140,28 +131,30 @@ if (!function_exists('hortadav_unregister_event')) {
     {
         unregister_post_type('hortadav_event');
         // unregister_taxonomy('event');
+        hortadav_unregister_terms('family');
         unregister_taxonomy('family');
-        unregister_taxonomy('category');
-        unregister_taxonomy('seeding');
+        hortadav_unregister_terms('lifecycle');
         unregister_taxonomy('lifecycle');
+        hortadav_unregister_terms('seeding');
+        unregister_taxonomy('seeding');
+        hortadav_unregister_terms('harvest_time');
+        unregister_taxonomy('harvest_time');
+        hortadav_unregister_terms('germination');
         unregister_taxonomy('germination');
+        hortadav_unregister_terms('frame');
         unregister_taxonomy('frame');
+        hortadav_unregister_terms('location');
         unregister_taxonomy('location');
     }
 }
 
-if (!function_exists('hortadav_register_archive')) {
-    function hortadav_register_archive()
+if (!function_exists('hortadav_unregister_terms')) {
+    function hortadav_unregister_terms($taxonomy)
     {
-        register_taxonomy_for_object_type('category', 'page');
-        wp_insert_term('hortadav_archive', 'category');
-    }
-}
-
-if (!function_exists('hortadav_unregister_archive')) {
-    function hortadav_unregister_archive()
-    {
-        wp_delete_category('hortadav_archive');
+        $terms = get_terms($taxonomy);
+        foreach ($terms as $term) {
+            wp_delete_term($term, $taxonomy);
+        }
     }
 }
 
@@ -173,18 +166,31 @@ if (!function_exists('hortadav_create_event')) {
         $post_id = wp_insert_post($data);
 
         foreach ($taxonomies as $taxonomy => $term) {
-            try {
-                wp_insert_term($term, $taxonomy);
-            } catch (exception $e) {
-                // DO NOTHING
-            }
-
+            // $term = hortadav_create_term($term, $taxonomy, $post_id);
             wp_set_object_terms($post_id, $term, $taxonomy);
+            unset($term);
         }
 
         add_post_meta($post_id, "startdate", $meta['startdate'], true);
         add_post_meta($post_id, "enddate", $meta['enddate'], true);
         add_post_meta($post_id, "plant", $meta['plant'], true);
+    }
+}
+
+if (!function_exists('hortadav_register_term')) {
+    function hortadav_register_term($term, $taxonomy)
+    {
+        if ($term == '') return;
+        $term_or_error = wp_insert_term($term, $taxonomy);
+        if (is_wp_error($term_or_error)) {
+            if ($term_or_error->get_error_code() != 'term_exists') {
+                echo "Error while creating new taxonomy term with error code " . $term_or_error->get_error_code();
+                echo print_r($term_or_error);
+                wp_die();
+            }
+        }
+
+        return $term_or_error;
     }
 }
 
@@ -214,6 +220,7 @@ if (!function_exists('hortadav_create_calendar')) {
         );
         $post_id = wp_insert_post($args);
 
+        register_taxonomy_for_object_type('category', 'page');
         wp_set_object_terms($post_id, 'hortadav_archive', 'category');
     }
 }

@@ -1,7 +1,23 @@
 <?php
-get_header(); ?>
 
-<div id="calendar"></div>
+/**
+ * Template Name: HortaDAV Calendar
+ *
+ * @package HortaDAV
+ */
+
+get_header();
+?>
+
+<main class="site-main">
+    <?php
+    if (is_archive()) : ?>
+        <header class="page-header">
+            <h1 class="page-title">Calendari de l'Horta</h1>
+        </header>
+    <?php endif; ?>
+    <div id="calendar"></div>
+</main>
 
 <?php
 $args = array(
@@ -118,4 +134,6 @@ foreach ($posts as $post) {
         calendar.render();
     });
 </script>
-<?php get_footer(); ?>
+<?php
+get_footer();
+?>
