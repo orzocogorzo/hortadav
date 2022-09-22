@@ -132,14 +132,14 @@ function HortadavCalendar(settings) {
               description: ev.description,
             },
           });
-          const currentYear = String(new Date().getFullYear());
-          const nextYear = String(new Date().getFullYear() + 1);
+          const eventYear = ev.dates.start.slice(0, 4);
+          const nextYear = String(eventYear * 1 + 1);
           calendar.addEvent({
             title: ev.title,
             start: self.parseDate(
-              ev.dates.start.replace(new RegExp(currentYear), nextYear)
+              ev.dates.start.replace(new RegExp(eventYear), nextYear)
             ),
-            end: self.parseDate(ev.dates.end.replace(new RegExp(currentYear), nextYear)),
+            end: self.parseDate(ev.dates.end.replace(new RegExp(eventYear), nextYear)),
             extendedProps: {
               description: ev.description,
             },
@@ -206,12 +206,18 @@ function HortadavCalendar(settings) {
     return (
       "BEGIN:VEVENT\n" +
       `UID:${Date.now()}\n` +
-      `DTSTAMP:${this.parseDate(ev.dates.start).toISOString()}\n` +
+      `DTSTAMP:${this.parseDate(ev.dates.start)
+        .toISOString()
+        .replace(/\-/g, "")
+        .replace(/\:/g, "")
+        .replace(/\.[0-9]+Z$/, "Z")}\n` +
       `DTSTART;VALUE=DATE:${ev.dates.start}\n` +
       `DTEND;VALUE=DATE:${ev.dates.end}\n` +
       `RRULE:FREQ=YEARLY;INTERVAL=1;WKST=MO\n` +
       `SUMMARY:${ev.title}\n` +
-      `DESCRIPTION:${ev.description}\n` +
+      `DESCRIPTION:${ev.description
+        .replace(/<br\/>/g, "\\n")
+        .replace(/\<\/?[^\>]+>/g, "")}\n` +
       `LOCATION:${ev.location}\n` +
       "END:VEVENT"
     );
@@ -226,7 +232,7 @@ function HortadavCalendar(settings) {
           "VERSION:2.0\n" +
           "CALSCALE:GREGORIAN\n" +
           "PRODID:-//Can Pujades Coop//NONSGML Calendari Hort v1.0//CA\n" +
-          "X-WR-CALNAME:Can Pujades\n" +
+          "X-WR-CALNAME:Calendari d'Horta\n" +
           "REFRESH-INTERVAL;VALUE=DURATION:PT4H\n" +
           "X-PUBLISHED-TTL:PT4H\n" +
           "BEGIN:VTIMEZONE\n" +
