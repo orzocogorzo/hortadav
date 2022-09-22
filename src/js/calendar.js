@@ -132,6 +132,18 @@ function HortadavCalendar(settings) {
               description: ev.description,
             },
           });
+          const currentYear = String(new Date().getFullYear());
+          const nextYear = String(new Date().getFullYear() + 1);
+          calendar.addEvent({
+            title: ev.title,
+            start: self.parseDate(
+              ev.dates.start.replace(new RegExp(currentYear), nextYear)
+            ),
+            end: self.parseDate(ev.dates.end.replace(new RegExp(currentYear), nextYear)),
+            extendedProps: {
+              description: ev.description,
+            },
+          });
         });
         calendar.render();
       })
