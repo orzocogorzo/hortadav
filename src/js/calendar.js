@@ -141,9 +141,14 @@ function HortadavCalendar(settings) {
       $el.getElementsByClassName("hortadav__calendar")[0],
       {
         initialView: "dayGridMonth",
+        dayHeaders: false,
+        firstDay: 1,
+        locale: "ca",
         eventMouseEnter: info => {
           tooltip.innerHTML = info.event.extendedProps.description;
           tooltip.style.display = "block";
+          tooltip.style.left = info.jsEvent.clientX + "px";
+          tooltip.style.top = info.jsEvent.clientY + "px";
         },
         eventMouseLeave: () => {
           tooltip.style.display = "none";
@@ -164,15 +169,6 @@ function HortadavCalendar(settings) {
 
     const tooltip = document.createElement("div");
     tooltip.classList.add("hortadav__tooltip");
-    tooltip.style.position = "absolute";
-    tooltip.style.zIndex = 1000;
-    tooltip.style.backgroundColor = "#ffffff";
-    tooltip.style.padding = "2rem";
-    tooltip.style.display = "none";
-    tooltip.style.width = "300px";
-    tooltip.style.fontSize = "12px";
-    tooltip.style.textAlign = "center";
-    tooltip.style.borderRadius = "5px";
     $el.appendChild(tooltip);
 
     const clearBtn = $el.getElementsByClassName("hortadav__clear")[0];
@@ -195,13 +191,54 @@ function HortadavCalendar(settings) {
   };
 
   _HortadavCalendar.prototype.eventToICal = function (ev) {
-    return ev.title + "\n";
+    return (
+      "BEGIN:VEVENT\n" +
+      `UID:${Date.now()}\n` +
+      `DTSTAMP:${this.parseDate(ev.dates.start).toISOString()}\n` +
+      `DTSTART;VALUE=DATE:${ev.dates.start}\n` +
+      `DTEND;VALUE=DATE:${ev.dates.end}\n` +
+      `RRULE:FREQ=YEARLY;INTERVAL=1;WKST=MO\n` +
+      `SUMMARY:${ev.title}\n` +
+      `DESCRIPTION:${ev.description}\n` +
+      `LOCATION:${ev.location}\n` +
+      "END:VEVENT"
+    );
   };
 
   _HortadavCalendar.prototype.exportICal = function () {
-    const ical = this.events.map(ev => this.eventToICal(ev)).join("\n");
     const anchor = document.createElement("a");
-    anchor.href = "data:text/plain;charset=utf-8, " + encodeURIComponent(ical);
+    anchor.href =
+      "data:text/plain;charset=utf-8," +
+      encodeURIComponent(
+        "BEGIN:VCALENDAR" +
+          "VERSION:2.0\n" +
+          "CALSCALE:GREGORIAN\n" +
+          "PRODID:-//Can Pujades Coop//NONSGML Calendari Hort v1.0//CA\n" +
+          "X-WR-CALNAME:Can Pujades\n" +
+          "REFRESH-INTERVAL;VALUE=DURATION:PT4H\n" +
+          "X-PUBLISHED-TTL:PT4H\n" +
+          "BEGIN:VTIMEZONE\n" +
+          "TZID:Europe/Madrid\n" +
+          "BEGIN:DAYLIGHT\n" +
+          "TZOFFSETFROM:+0100\n" +
+          "TZOFFSETTO:+0200\n" +
+          "TZNAME:CEST\n" +
+          "DTSTART:19700329T020000\n" +
+          "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\n" +
+          "END:DAYLIGHT\n" +
+          "BEGIN:STANDARD\n" +
+          "TZOFFSETFROM:+0200\n" +
+          "TZOFFSETTO:+0100\n" +
+          "TZNAME:CET\n" +
+          "DTSTART:19701025T030000\n" +
+          "RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\n" +
+          "END:STANDARD\n" +
+          "END:VTIMEZONE\n" +
+          this.events.map(ev => this.eventToICal(ev)).join("\n") +
+          "\n" +
+          "END:VCALENDAR"
+      );
+
     anchor.download = "calendari_horta.ics";
     document.body.appendChild(anchor);
     anchor.click();

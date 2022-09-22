@@ -1,0 +1,65 @@
+#calendar {
+  display: flex;
+}
+
+.hortadav__toolbar {
+  width: 220px;
+  margin-right: 1em;
+}
+
+.hortadav__selector {
+  margin: 1em 0;
+}
+
+.hortadav__selector select {
+  height: 300px;
+  width: 100%;
+}
+
+.hortadav__buttons button {
+  width: 100%;
+}
+
+.hortadav__buttons button:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+.hortadav__calendar {
+  flex: 1;
+}
+
+.hortadav__tooltip {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 1rem 2rem;
+  width: 280px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px #0004;
+  transform: translate(-50%, -108%);
+}
+
+#calendar .fc-header-toolbar {
+  margin-bottom: 0px;
+}
+
+#calendar .fc-toolbar-title {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+#calendar .fc-today-button {
+  display: none;
+}
+
+#calendar .fc-button-primary {
+  background-color: var(--wp--preset--color--accent, --wp--preset--color--primary);
+}
+
+#calendar .fc-scrollgrid {
+  margin: 0;
+}

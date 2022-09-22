@@ -100,25 +100,46 @@ if (!class_exists('HortaDAV')) {
             if ((is_archive() && get_post_type() === 'hortadav_event') || has_category('hortadav_archive')) {
                 wp_enqueue_script(
                     'fullcalendar-js',
-                    'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.js',
+                    'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js',
                     array('jquery'),
-                    '5.11.2',
+                    '5.11.3',
+                    true
+                );
+                wp_enqueue_script(
+                    'fullcalendar-ca',
+                    'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/ca.js',
+                    array('fullcalendar-js'),
+                    '5.11.3',
                     true
                 );
                 wp_enqueue_style(
                     'fullcalendar-css',
-                    'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.css',
+                    'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css',
                     array(),
-                    '5.11.2',
+                    '5.11.3',
                     'all'
                 );
+                /* wp_enqueue_script( */
+                /*     'uuid-js', */
+                /*     // 'https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/index.min.js', */
+                /*     'https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/native-browser.js', */
+                /*     array(), */
+                /*     '9.0.0', */
+                /*     true */
+                /* ); */
 
                 wp_enqueue_script(
                     'hortadav_calendar_js',
-                    plugin_dir_url(__FILE__) . '/js/calendar.js',
+                    plugin_dir_url(__FILE__) . 'js/calendar.js',
                     array('fullcalendar-js'),
                     '1.0.0',
                     true
+                );
+                wp_enqueue_style(
+                    'hortadav_calendar_css',
+                    plugin_dir_url(__FILE__) . 'js/calendar.css',
+                    array(),
+                    '1.0.0'
                 );
             }
         }

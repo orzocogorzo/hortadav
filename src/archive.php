@@ -16,6 +16,10 @@ get_header();
             <h1 class="page-title">Calendari de l'Horta</h1>
         </header>
     <?php endif; ?>
+    <p><b>Utilitza el selector que trobaràs a continuació per visualitzar aquelles plantes que
+            vulguis coneixer</b>. Un cop tinguis seleccionades totes les que t'interèssin, fent click
+        al botó <b>'Descarregar'</b> podràs obtenir un arxiu per importar a l'aplicació de
+        calendari que desitgis.</p>
     <div id="calendar"></div>
 </main>
 
