@@ -10,17 +10,19 @@
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:         hortadav
  * Domain Path:         /languages
- * Version:             1.1.0
+ * Version:             1.1.1
  * Requires PHP:        7.4
  * Requires at least:   6.1
  */
 
 
+define('HORTADAV_VERSION', '1.1.1');
+
 if (!class_exists('HortaDAV')) {
 
     class HortaDAV
     {
-        function __construct()
+        public function __construct()
         {
             register_activation_hook(__FILE__, array('HortaDAV', 'activate'));
             register_deactivation_hook(__FILE__, array('HortaDAV', 'deactivate'));
@@ -36,7 +38,7 @@ if (!class_exists('HortaDAV')) {
             }
         }
 
-        static function activate()
+        public static function activate()
         {
             require_once __DIR__ . '/hortadav_event.php';
             hortadav_register_event();
@@ -77,7 +79,7 @@ if (!class_exists('HortaDAV')) {
             hortadav_create_archive();
         }
 
-        static function deactivate()
+        public static function deactivate()
         {
             require_once __DIR__ . '/hortadav_event.php';
 
@@ -87,11 +89,11 @@ if (!class_exists('HortaDAV')) {
             wp_delete_category('hortadav_archive');
         }
 
-        static function uninstall()
+        public static function uninstall()
         {
         }
 
-        function init()
+        public function init()
         {
             require_once __DIR__ . '/hortadav_event.php';
             hortadav_register_event();
@@ -99,7 +101,7 @@ if (!class_exists('HortaDAV')) {
             register_taxonomy_for_object_type('category', 'page');
         }
 
-        function enqueue_scripts()
+        public function enqueue_scripts()
         {
             if ((is_archive() && get_post_type() === 'hortadav_event') || has_category('hortadav_archive')) {
                 wp_enqueue_script(
@@ -128,27 +130,30 @@ if (!class_exists('HortaDAV')) {
                     'hortadav_calendar_js',
                     plugin_dir_url(__FILE__) . 'js/calendar.js',
                     array('fullcalendar-js','wp-i18n'),
-                    '1.0.0',
-                    true
+                    HORTADAV_VERSION,
+                    ['in_footer' => false],
                 );
                 wp_enqueue_style(
                     'hortadav_calendar_css',
                     plugin_dir_url(__FILE__) . 'js/calendar.css',
                     array(),
-                    '1.0.0'
+                    HORTADAV_VERSION,
                 );
             }
         }
 
-        function set_archive_template($content)
+        public function set_archive_template($content)
         {
             if (has_category('hortadav_archive')) {
-                include WP_PLUGIN_DIR . '/' . plugin_basename(dirname(__FILE__)) . '/archive.php';
-                exit;
+                ob_start();
+                include plugin_dir_path(__FILE__) . '/archive.php';
+                return ob_get_clean();
             }
+
+            return $content;
         }
 
-        function include_archive_template($template)
+        public function include_archive_template($template)
         {
             if (is_archive() && get_post_type() === 'hortadav_event') {
                 return WP_PLUGIN_DIR . '/' . plugin_basename(dirname(__FILE__)) . '/archive.php';
