@@ -10,12 +10,98 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-02-09T20:49:40+00:00\n"
-"PO-Revision-Date: 2025-02-09 20:54+0000\n"
+"PO-Revision-Date: 2025-02-09 21:38+0000\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Domain: hortadav\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Loco-Version: 2.7.1; wp-6.7.1"
+
+#: archive.php:19
+msgid ""
+"Benvinguda al calendari de cultius de l'hort. Aquí podràs trobar informació "
+"d'algunes de les plantes que pots tenir plantades al teu hort. <b>Utilitza "
+"el selector per visualitzar aquelles plantes que vulguis conèixer</b>. Un "
+"cop tinguis seleccionades totes les que t'interessin, navegant pel calendari "
+"podràs consultar quines són les èpoques de plantació, floració i collita de "
+"cada espècie. Finalment, fent clic al botó <b>\"Descarregar\"</b>, podràs "
+"obtenir un arxiu per importar a l'aplicació de calendari que desitgis i "
+"endur-te aquesta informació al teu calendari personal."
+msgstr ""
+"Benvinguda al calendari de cultius de l'hort. Aquí podràs trobar informació "
+"d'algunes de les plantes que pots tenir plantades al teu hort. <b>Utilitza "
+"el selector per visualitzar aquelles plantes que vulguis conèixer</b>. Un "
+"cop tinguis seleccionades totes les que t'interessin, navegant pel calendari "
+"podràs consultar quines són les èpoques de plantació, floració i collita de "
+"cada espècie. Finalment, fent clic al botó <b>\"Descarregar\"</b>, podràs "
+"obtenir un arxiu per importar a l'aplicació de calendari que desitgis i "
+"endur-te aquesta informació al teu calendari personal."
+
+#: hortadav_event.php:222
+msgid "Calendari"
+msgstr "Calendari"
+
+#: archive.php:16 hortadav_event.php:221
+msgid "Calendari de l'Hort"
+msgstr "Calendari de l'Hort"
+
+#: hortadav_event.php:7 hortadav_event.php:9
+msgid "Calendari de l'hort"
+msgstr "Calendari de l'hort"
+
+#: hortadav_event.php:40
+msgid "Cicle de vida"
+msgstr "Cicle de vida"
+
+#: hortadav_event.php:39
+msgid "Cicles de vida"
+msgstr "Cicles de vida"
+
+#. Author of the plugin
+#: hortadav.php
+msgid "codeccoop"
+msgstr "codeccoop"
+
+#: js/calendar.js:109
+msgid "Descarrega"
+msgstr "Descarrega"
+
+#: hortadav_event.php:85
+msgid "Durada fins a recol·lecció"
+msgstr "Durada fins a recol·lecció"
+
+#: hortadav_event.php:84
+msgid "Durades fins a recol·lecció"
+msgstr "Durades fins a recol·lecció"
+
+#: hortadav_event.php:193
+msgid "Error al crear el terme %s a la taxonomia %s"
+msgstr "Error al crear el terme %s a la taxonomia %s"
+
+#: hortadav_event.php:8
+msgid "Esdeveniment de l'hort"
+msgstr "Esdeveniment de l'hort"
+
+#: hortadav_event.php:14
+msgid "Esdeveniment del calendari de llaura i sembra"
+msgstr "Esdeveniment del calendari de llaura i sembra"
+
+#. Description of the plugin
+#: hortadav.php
+msgid ""
+"Exportació dels esdeveniments del calendari de sembra d'hortalises "
+"compatible amb sistemes CalDAV"
+msgstr ""
+"Exportació dels esdeveniments del calendari de sembra d'hortalises "
+"compatible amb sistemes CalDAV"
+
+#: hortadav_event.php:25
+msgid "Familia"
+msgstr "Familia"
+
+#: hortadav_event.php:24
+msgid "Famílies"
+msgstr "Famílies"
 
 #. Plugin Name of the plugin
 #: hortadav.php
@@ -27,110 +113,14 @@ msgstr "HortaDAV"
 msgid "https://github.com/codeccoop/hortadav"
 msgstr "https://github.com/codeccoop/hortadav"
 
-#. Description of the plugin
-#: hortadav.php
-msgid ""
-"Exportació dels esdeveniments del calendari de sembra d'hortalises "
-"compatible amb sistemes CalDAV"
-msgstr ""
-"Exportació dels esdeveniments del calendari de sembra d'hortalises "
-"compatible amb sistemes CalDAV"
-
-#. Author of the plugin
-#: hortadav.php
-msgid "codeccoop"
-msgstr "codeccoop"
-
 #. Author URI of the plugin
 #: hortadav.php
 msgid "https://www.codeccoop.org"
 msgstr "https://www.codeccoop.org"
 
-#: archive.php:16 hortadav_event.php:221
-msgid "Calendari de l'Hort"
-msgstr "Calendari de l'Hort"
-
-#: archive.php:19
-msgid ""
-"Benvinguda al calendari de cultius de l'hort. Aquí podràs trobar informació "
-"d'algunes de les plantes que pots\n"
-"tenir plantades al teu hort. <b>Utilitza el selector per visualitzar "
-"aquelles plantes que vulguis conèixer</b>.\n"
-"Un cop tinguis seleccionades totes les que t'interessin, navegant pel "
-"calendari podràs consultar quines són\n"
-"les èpoques de plantació, floració i collita de cada espècie. Finalment, "
-"fent clic al botó <b>\"Descarregar\"</b>,\n"
-"podràs obtenir un arxiu per importar a l'aplicació de calendari que desitgis "
-"i endur-te aquesta informació\n"
-"al teu calendari personal."
-msgstr ""
-"Benvinguda al calendari de cultius de l'hort. Aquí podràs trobar informació "
-"d'algunes de les plantes que pots\n"
-"tenir plantades al teu hort. <b>Utilitza el selector per visualitzar "
-"aquelles plantes que vulguis conèixer</b>.\n"
-"Un cop tinguis seleccionades totes les que t'interessin, navegant pel "
-"calendari podràs consultar quines són\n"
-"les èpoques de plantació, floració i collita de cada espècie. Finalment, "
-"fent clic al botó <b>\"Descarregar\"</b>,\n"
-"podràs obtenir un arxiu per importar a l'aplicació de calendari que desitgis "
-"i endur-te aquesta informació\n"
-"al teu calendari personal."
-
-#: hortadav_event.php:7 hortadav_event.php:9
-msgid "Calendari de l'hort"
-msgstr "Calendari de l'hort"
-
-#: hortadav_event.php:8
-msgid "Esdeveniment de l'hort"
-msgstr "Esdeveniment de l'hort"
-
-#: hortadav_event.php:14
-msgid "Esdeveniment del calendari de llaura i sembra"
-msgstr "Esdeveniment del calendari de llaura i sembra"
-
-#: hortadav_event.php:24
-msgid "Famílies"
-msgstr "Famílies"
-
-#: hortadav_event.php:25
-msgid "Familia"
-msgstr "Familia"
-
-#: hortadav_event.php:39
-msgid "Cicles de vida"
-msgstr "Cicles de vida"
-
-#: hortadav_event.php:40
-msgid "Cicle de vida"
-msgstr "Cicle de vida"
-
-#: hortadav_event.php:54
-msgid "Profunditats de sembra"
-msgstr "Profunditats de sembra"
-
-#: hortadav_event.php:55
-msgid "Profunditat de sembra"
-msgstr "Profunditat de sembra"
-
-#: hortadav_event.php:69 hortadav_event.php:70
-msgid "Temps de germinació o brotació"
-msgstr "Temps de germinació o brotació"
-
-#: hortadav_event.php:84
-msgid "Durades fins a recol·lecció"
-msgstr "Durades fins a recol·lecció"
-
-#: hortadav_event.php:85
-msgid "Durada fins a recol·lecció"
-msgstr "Durada fins a recol·lecció"
-
-#: hortadav_event.php:99
-msgid "Marcs de plantació"
-msgstr "Marcs de plantació"
-
-#: hortadav_event.php:100
-msgid "Marc de plantació"
-msgstr "Marc de plantació"
+#: js/calendar.js:105
+msgid "Les plantes de l'hort"
+msgstr "Les plantes de l'hort"
 
 #: hortadav_event.php:114
 msgid "Localitzacions"
@@ -140,22 +130,26 @@ msgstr "Localitzacions"
 msgid "Localització"
 msgstr "Localització"
 
-#: hortadav_event.php:193
-msgid "Error al crear el terme %s a la taxonomia %s"
-msgstr "Error al crear el terme %s a la taxonomia %s"
+#: hortadav_event.php:100
+msgid "Marc de plantació"
+msgstr "Marc de plantació"
 
-#: hortadav_event.php:222
-msgid "Calendari"
-msgstr "Calendari"
-
-#: js/calendar.js:105
-msgid "Les plantes de l'hort"
-msgstr "Les plantes de l'hort"
+#: hortadav_event.php:99
+msgid "Marcs de plantació"
+msgstr "Marcs de plantació"
 
 #: js/calendar.js:108
 msgid "Neteja"
 msgstr "Neteja"
 
-#: js/calendar.js:109
-msgid "Descarrega"
-msgstr "Descarrega"
+#: hortadav_event.php:55
+msgid "Profunditat de sembra"
+msgstr "Profunditat de sembra"
+
+#: hortadav_event.php:54
+msgid "Profunditats de sembra"
+msgstr "Profunditats de sembra"
+
+#: hortadav_event.php:69 hortadav_event.php:70
+msgid "Temps de germinació o brotació"
+msgstr "Temps de germinació o brotació"

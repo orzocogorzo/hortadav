@@ -16,12 +16,7 @@ get_header();
         <h1 class="page-title"><?php echo __('Calendari de l\'Hort', 'hortadav'); ?></h1>
         </header>
     <?php endif; ?>
-    <p><?php echo __("Benvinguda al calendari de cultius de l'hort. Aquí podràs trobar informació d'algunes de les plantes que pots
-tenir plantades al teu hort. <b>Utilitza el selector per visualitzar aquelles plantes que vulguis conèixer</b>.
-Un cop tinguis seleccionades totes les que t'interessin, navegant pel calendari podràs consultar quines són
-les èpoques de plantació, floració i collita de cada espècie. Finalment, fent clic al botó <b>\"Descarregar\"</b>,
-podràs obtenir un arxiu per importar a l'aplicació de calendari que desitgis i endur-te aquesta informació
-al teu calendari personal.", 'hortadav'); ?></p>
+    <p><?php echo __("Benvinguda al calendari de cultius de l'hort. Aquí podràs trobar informació d'algunes de les plantes que pots tenir plantades al teu hort. <b>Utilitza el selector per visualitzar aquelles plantes que vulguis conèixer</b>. Un cop tinguis seleccionades totes les que t'interessin, navegant pel calendari podràs consultar quines són les èpoques de plantació, floració i collita de cada espècie. Finalment, fent clic al botó <b>\"Descarregar\"</b>, podràs obtenir un arxiu per importar a l'aplicació de calendari que desitgis i endur-te aquesta informació al teu calendari personal.", 'hortadav'); ?></p>
     <div id="calendar"></div>
 </main>
 
