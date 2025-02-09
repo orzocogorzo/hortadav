@@ -1,0 +1,122 @@
+#calendar {
+  display: flex;
+  border-top: 1px dashed #0003;
+  padding: 2rem 0;
+}
+
+.hortadav__toolbar {
+  width: 220px;
+  margin-right: 1em;
+}
+
+.hortadav__toolbar .hortadav__toolbar-title {
+  margin: 0px;
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.hortadav__selector {
+  margin-bottom: 1em;
+}
+
+.hortadav__selector select {
+  height: 300px;
+  width: 100%;
+  padding: 0.25em 0.1em;
+  border-color: #0004;
+}
+
+.hortadav__selector option {
+  opacity: 0.8;
+  padding: 0.15em 0.3em;
+}
+
+.hortadav__buttons button {
+  width: 100%;
+  text-align: center;
+  background-color: var(--wp--preset--color--primary, #007cba);
+  color: white;
+  cursor: pointer;
+  padding: 0.35em 0.75em;
+}
+
+.hortadav__buttons button:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.hortadav__buttons button:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+.hortadav__calendar {
+  flex: 1;
+}
+
+.hortadav__tooltip {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 2rem 2.5rem;
+  width: 280px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px #0004;
+  transform: translate(-50%, -108%);
+  opacity: 0.96;
+}
+
+.hortadav__tooltip b {
+  font-size: 1.2em;
+  text-decoration: underline;
+}
+
+#calendar .fc-header-toolbar {
+  margin-bottom: 0px;
+}
+
+#calendar .fc-toolbar-title {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
+}
+
+#calendar .fc-today-button {
+  display: none;
+}
+
+#calendar .fc-button-primary {
+  background-color: var(--wp--preset--color--primary, #007cba);
+}
+
+#calendar .fc-scrollgrid {
+  margin: 0px;
+}
+
+#calendar .fc-scrollgrid-sync-table {
+  background-color: white;
+  margin: 0;
+}
+
+#calendar .fc-daygrid-day-number {
+  text-decoration: none;
+}
+
+#calendar .fc-h-event {
+  background-color: var(--wp--preset--color--primary, #007cba);
+  border: 1px solid transparent;
+}
+
+#calendar .fc-event-main {
+  line-height: 1;
+  font-size: 0.8em;
+}
+
+#calendar .fc-event-time {
+  display: none;
+}

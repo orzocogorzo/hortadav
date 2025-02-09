@@ -1,0 +1,141 @@
+# Copyright (C) 2025 codeccoop
+# This file is distributed under the GPL-3.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: HortaDAV 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/hortadav\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-02-09T20:49:40+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: hortadav\n"
+
+#. Plugin Name of the plugin
+#: hortadav.php
+msgid "HortaDAV"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: hortadav.php
+msgid "https://github.com/codeccoop/hortadav"
+msgstr ""
+
+#. Description of the plugin
+#: hortadav.php
+msgid "Exportació dels esdeveniments del calendari de sembra d'hortalises compatible amb sistemes CalDAV"
+msgstr ""
+
+#. Author of the plugin
+#: hortadav.php
+msgid "codeccoop"
+msgstr ""
+
+#. Author URI of the plugin
+#: hortadav.php
+msgid "https://www.codeccoop.org"
+msgstr ""
+
+#: archive.php:16
+#: hortadav_event.php:221
+msgid "Calendari de l'Hort"
+msgstr ""
+
+#: archive.php:19
+msgid ""
+"Benvinguda al calendari de cultius de l'hort. Aquí podràs trobar informació d'algunes de les plantes que pots\n"
+"tenir plantades al teu hort. <b>Utilitza el selector per visualitzar aquelles plantes que vulguis conèixer</b>.\n"
+"Un cop tinguis seleccionades totes les que t'interessin, navegant pel calendari podràs consultar quines són\n"
+"les èpoques de plantació, floració i collita de cada espècie. Finalment, fent clic al botó <b>\"Descarregar\"</b>,\n"
+"podràs obtenir un arxiu per importar a l'aplicació de calendari que desitgis i endur-te aquesta informació\n"
+"al teu calendari personal."
+msgstr ""
+
+#: hortadav_event.php:7
+#: hortadav_event.php:9
+msgid "Calendari de l'hort"
+msgstr ""
+
+#: hortadav_event.php:8
+msgid "Esdeveniment de l'hort"
+msgstr ""
+
+#: hortadav_event.php:14
+msgid "Esdeveniment del calendari de llaura i sembra"
+msgstr ""
+
+#: hortadav_event.php:24
+msgid "Famílies"
+msgstr ""
+
+#: hortadav_event.php:25
+msgid "Familia"
+msgstr ""
+
+#: hortadav_event.php:39
+msgid "Cicles de vida"
+msgstr ""
+
+#: hortadav_event.php:40
+msgid "Cicle de vida"
+msgstr ""
+
+#: hortadav_event.php:54
+msgid "Profunditats de sembra"
+msgstr ""
+
+#: hortadav_event.php:55
+msgid "Profunditat de sembra"
+msgstr ""
+
+#: hortadav_event.php:69
+#: hortadav_event.php:70
+msgid "Temps de germinació o brotació"
+msgstr ""
+
+#: hortadav_event.php:84
+msgid "Durades fins a recol·lecció"
+msgstr ""
+
+#: hortadav_event.php:85
+msgid "Durada fins a recol·lecció"
+msgstr ""
+
+#: hortadav_event.php:99
+msgid "Marcs de plantació"
+msgstr ""
+
+#: hortadav_event.php:100
+msgid "Marc de plantació"
+msgstr ""
+
+#: hortadav_event.php:114
+msgid "Localitzacions"
+msgstr ""
+
+#: hortadav_event.php:115
+msgid "Localització"
+msgstr ""
+
+#: hortadav_event.php:193
+msgid "Error al crear el terme %s a la taxonomia %s"
+msgstr ""
+
+#: hortadav_event.php:222
+msgid "Calendari"
+msgstr ""
+
+#: js/calendar.js:105
+msgid "Les plantes de l'hort"
+msgstr ""
+
+#: js/calendar.js:108
+msgid "Neteja"
+msgstr ""
+
+#: js/calendar.js:109
+msgid "Descarrega"
+msgstr ""

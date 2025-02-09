@@ -1,27 +1,28 @@
 <?php
+
 if (!function_exists('hortadav_register_event')) {
     function hortadav_register_event()
     {
         $labels = array(
-            'name'               => _x('HortaDAV Esdeveniments', 'post type general name'),
-            'singular_name'      => _x('HortaDAV Esdeveniment', 'post type singular name'),
-            'menu_name'          => 'HortaDAV'
+            'name'               => __('Calendari de l\'hort', 'hortadav'),
+            'singular_name'      => __('Esdeveniment de l\'hort', 'hortadav'),
+            'menu_name'          => __('Calendari de l\'hort', 'hortadav'),
         );
 
         $args = array(
             'labels'        => $labels,
-            'description'   => 'Esdeveniment del calendari de llaura i sembra',
+            'description'   => __('Esdeveniment del calendari de llaura i sembra', 'hortadav'),
             'public'        => true,
             'menu_position' => 5,
-            'supports'      => array('title', 'autor', 'editor', 'custom-fields', 'sticky', 'revisions'),
+            'supports'      => array('title', 'autor', 'editor', 'custom-fields'),
             'has_archive'   => true,
         );
 
         register_post_type('hortadav_event', $args);
 
         $labels = array(
-            'name'              => _x('Families', 'taxonomy general name'),
-            'singular_name'     => _x('Familia', 'taxonomy singular name'),
+            'name'              => __('Famílies', 'hortadav'),
+            'singular_name'     => __('Familia', 'hortadav'),
         );
         $args   = array(
             /* 'hierarchical'      => false, // make it hierarchical (like categories) */
@@ -30,13 +31,13 @@ if (!function_exists('hortadav_register_event')) {
             /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'family'],
+            // 'rewrite'           => ['slug' => 'family'],
         );
         register_taxonomy('family', ['hortadav_event'], $args);
 
         $labels = array(
-            'name'              => _x('Cicles de vida', 'taxonomy general name'),
-            'singular_name'     => _x('Cicle de vida', 'taxonomy singular name'),
+            'name'              => __('Cicles de vida', 'hortadav'),
+            'singular_name'     => __('Cicle de vida', 'hortadav'),
         );
         $args   = array(
             /* 'hierarchical'      => false, // make it hierarchical (like categories) */
@@ -45,13 +46,13 @@ if (!function_exists('hortadav_register_event')) {
             /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'lifecycle'],
+            // 'rewrite'           => ['slug' => 'lifecycle'],
         );
         register_taxonomy('lifecycle', ['hortadav_event'], $args);
 
         $labels = array(
-            'name'              => _x('Profunditats de sembra', 'taxonomy general name'),
-            'singular_name'     => _x('Profunditat de sembra', 'taxonomy singular name'),
+            'name'              => __('Profunditats de sembra', 'hortadav'),
+            'singular_name'     => __('Profunditat de sembra', 'hortadav'),
         );
         $args   = array(
             /* 'hierarchical'      => false, // make it hierarchical (like categories) */
@@ -60,13 +61,13 @@ if (!function_exists('hortadav_register_event')) {
             /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'seeding'],
+            // 'rewrite'           => ['slug' => 'seeding'],
         );
         register_taxonomy('seeding', ['hortadav_event'], $args);
 
         $labels = array(
-            'name'              => _x('Temps de germinació o brotació', 'taxonomy general name'),
-            'singular_name'     => _x('Temps de germinació o brotació', 'taxonomy singular name'),
+            'name'              => __('Temps de germinació o brotació', 'hortadav'),
+            'singular_name'     => __('Temps de germinació o brotació', 'hortadav'),
         );
         $args   = array(
             /* 'hierarchical'      => false, // make it hierarchical (like categories) */
@@ -75,13 +76,13 @@ if (!function_exists('hortadav_register_event')) {
             /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'germination'],
+            // 'rewrite'           => ['slug' => 'germination'],
         );
         register_taxonomy('germination', ['hortadav_event'], $args);
 
         $labels = array(
-            'name'              => _x('Durades fins a recol·lecció', 'taxonomy general name'),
-            'singular_name'     => _x('Durada fins a recol·lecció', 'taxonomy singular name'),
+            'name'              => __('Durades fins a recol·lecció', 'hortadav'),
+            'singular_name'     => __('Durada fins a recol·lecció', 'hortadav'),
         );
         $args   = array(
             /* 'hierarchical'      => false, // make it hierarchical (like categories) */
@@ -90,13 +91,13 @@ if (!function_exists('hortadav_register_event')) {
             /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'harvest_time'],
+            // 'rewrite'           => ['slug' => 'harvest_time'],
         );
         register_taxonomy('harvest_time', ['hortadav_event'], $args);
 
         $labels = array(
-            'name'              => _x('Marcs de plantació', 'taxonomy general name'),
-            'singular_name'     => _x('Marc de plantació', 'taxonomy singular name'),
+            'name'              => __('Marcs de plantació', 'hortadav'),
+            'singular_name'     => __('Marc de plantació', 'hortadav'),
         );
         $args   = array(
             /* 'hierarchical'      => false, // make it hierarchical (like categories) */
@@ -105,13 +106,13 @@ if (!function_exists('hortadav_register_event')) {
             /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'frame'],
+            // 'rewrite'           => ['slug' => 'frame'],
         );
         register_taxonomy('frame', ['hortadav_event'], $args);
 
         $labels = array(
-            'name'              => _x('Localitzacions', 'taxonomy general name'),
-            'singular_name'     => _x('Localització', 'taxonomy singular name'),
+            'name'              => __('Localitzacions', 'hortadav'),
+            'singular_name'     => __('Localització', 'hortadav'),
         );
         $args   = array(
             /* 'hierarchical'      => false, // make it hierarchical (like categories) */
@@ -120,7 +121,7 @@ if (!function_exists('hortadav_register_event')) {
             /* 'show_ui'           => true, // inherit from public */
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'location'],
+            // 'rewrite'           => ['slug' => 'location'],
         );
         register_taxonomy('location', ['hortadav_event'], $args);
     }
@@ -180,13 +181,17 @@ if (!function_exists('hortadav_create_event')) {
 if (!function_exists('hortadav_register_term')) {
     function hortadav_register_term($term, $taxonomy)
     {
-        if ($term == '') return;
+        if ($term == '') {
+            return;
+        }
+
         $term_or_error = wp_insert_term($term, $taxonomy);
         if (is_wp_error($term_or_error)) {
             if ($term_or_error->get_error_code() != 'term_exists') {
-                echo "Error while creating new taxonomy term with error code " . $term_or_error->get_error_code();
-                echo print_r($term_or_error);
-                wp_die();
+                wp_trigger_error(
+                    'hortadav_register_term',
+                    __('Error al crear el terme %s a la taxonomia %s', 'hortadav'),
+                );
             }
         }
 
@@ -213,8 +218,8 @@ if (!function_exists('hortadav_create_calendar')) {
     function hortadav_create_archive()
     {
         $args = array(
-            'post_title'    => 'Calendari de l\'Horta',
-            'post_content'  => 'Calendari',
+            'post_title'    => __('Calendari de l\'Hort', 'hortadav'),
+            'post_content'  => __('Calendari', 'hortadav'),
             'post_status'   => 'publish',
             'post_type'     => 'page',
         );

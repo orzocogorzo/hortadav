@@ -102,10 +102,11 @@ function HortadavCalendar(settings) {
   let selection = null;
 
   const html = `<div class="hortadav__toolbar">
+    <h2 class="hortadav__toolbar-title">${wp.i18n.__("Les plantes de l'hort","hortadav")}</h2>
     <div class="hortadav__selector"></div>
     <div class="hortadav__buttons">
-      <button class="hortadav__clear">Neteja</button>
-      <button class="hortadav__download">Descarrega</button>
+      <button class="hortadav__clear" disabled>${wp.i18n.__("Neteja", "hortadav")}</button>
+      <button class="hortadav__download" disabled>${wp.i18n.__("Descarrega", "hortadav")}</button>
     </div>
   </div>
   <div class="hortadav__calendar"></div>
@@ -146,6 +147,13 @@ function HortadavCalendar(settings) {
           });
         });
         calendar.render();
+        if (events.length) {
+          clearBtn.disabled = false;
+          downloadBtn.disabled = false;
+        } else {
+          clearBtn.disabled = true;
+          downloadBtn.disabled = true;
+        }
       })
       .renderOn($el.getElementsByClassName("hortadav__selector")[0]);
 
@@ -228,28 +236,20 @@ function HortadavCalendar(settings) {
     anchor.href =
       "data:text/plain;charset=utf-8," +
       encodeURIComponent(
-        "BEGIN:VCALENDAR" +
+        "BEGIN:VCALENDAR\n" +
           "VERSION:2.0\n" +
           "CALSCALE:GREGORIAN\n" +
           "PRODID:-//Can Pujades Coop//NONSGML Calendari Hort v1.0//CA\n" +
           "X-WR-CALNAME:Calendari d'Horta\n" +
-          "REFRESH-INTERVAL;VALUE=DURATION:PT4H\n" +
-          "X-PUBLISHED-TTL:PT4H\n" +
           "BEGIN:VTIMEZONE\n" +
           "TZID:Europe/Madrid\n" +
-          "BEGIN:DAYLIGHT\n" +
-          "TZOFFSETFROM:+0100\n" +
-          "TZOFFSETTO:+0200\n" +
-          "TZNAME:CEST\n" +
-          "DTSTART:19700329T020000\n" +
-          "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\n" +
-          "END:DAYLIGHT\n" +
           "BEGIN:STANDARD\n" +
-          "TZOFFSETFROM:+0200\n" +
-          "TZOFFSETTO:+0100\n" +
-          "TZNAME:CET\n" +
+          "TZOFFSETFROM:-001444\n" +
+          "TZOFFSETTO:+000000\n" +
+          "TZNAME:Europe/Madrid(STD)\n" +
           "DTSTART:19701025T030000\n" +
-          "RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\n" +
+          "DTSTART:19001231T234516\n" +
+          "RDATE:19001231T234516\n" + 
           "END:STANDARD\n" +
           "END:VTIMEZONE\n" +
           this.events.map(ev => this.eventToICal(ev)).join("\n") +

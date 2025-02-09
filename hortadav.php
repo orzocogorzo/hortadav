@@ -1,15 +1,18 @@
 <?php
 
 /**
- * Plugin Name: HortaDAV
- * Plugin URI: https://github.com/codeccoop/hortadav
- * Description: Exportació dels esdeveniments del calendari de sembra d'hortalises compatible amb sistemes CalDAV
- * Version: 1.0.0
- * Author: Còdec Cooperativa
- * Author URI: https://www.codeccoop.org
- * License: GPL-3.0-or-later
- * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain: hortadav
+ * Plugin Name:         HortaDAV
+ * Plugin URI:          https://github.com/codeccoop/hortadav
+ * Description:         Exportació dels esdeveniments del calendari de sembra d'hortalises compatible amb sistemes CalDAV
+ * Author:              codeccoop
+ * Author URI:          https://www.codeccoop.org
+ * License:             GPL-3.0-or-later
+ * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
+ * Text Domain:         hortadav
+ * Domain Path:         /languages
+ * Version:             1.0.0
+ * Requires PHP:        7.4
+ * Requires at least:   6.1
  */
 
 
@@ -35,10 +38,11 @@ if (!class_exists('HortaDAV')) {
 
         static function activate()
         {
-            require_once __DIR__ . '/post_types/horta_event.php';
+            require_once __DIR__ . '/hortadav_event.php';
             hortadav_register_event();
 
-            $data_path = plugin_dir_url(__FILE__) . 'data/calendar.json';
+            // $data_path = plugin_dir_url(__FILE__) . 'data/calendar.json';
+            $data_path = __DIR__ . '/data/calendar.json';
             $data = json_decode(file_get_contents($data_path), true);
 
             foreach ($data['VCALENDAR'][0]['VEVENT'] as $event) {
@@ -75,7 +79,7 @@ if (!class_exists('HortaDAV')) {
 
         static function deactivate()
         {
-            require_once __DIR__ . '/post_types/horta_event.php';
+            require_once __DIR__ . '/hortadav_event.php';
 
             hortadav_delete_events();
             hortadav_unregister_event();
@@ -89,7 +93,7 @@ if (!class_exists('HortaDAV')) {
 
         function init()
         {
-            require_once __DIR__ . '/post_types/horta_event.php';
+            require_once __DIR__ . '/hortadav_event.php';
             hortadav_register_event();
 
             register_taxonomy_for_object_type('category', 'page');
@@ -119,19 +123,11 @@ if (!class_exists('HortaDAV')) {
                     '5.11.3',
                     'all'
                 );
-                /* wp_enqueue_script( */
-                /*     'uuid-js', */
-                /*     // 'https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/index.min.js', */
-                /*     'https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/native-browser.js', */
-                /*     array(), */
-                /*     '9.0.0', */
-                /*     true */
-                /* ); */
 
                 wp_enqueue_script(
                     'hortadav_calendar_js',
                     plugin_dir_url(__FILE__) . 'js/calendar.js',
-                    array('fullcalendar-js'),
+                    array('fullcalendar-js','wp-i18n'),
                     '1.0.0',
                     true
                 );
