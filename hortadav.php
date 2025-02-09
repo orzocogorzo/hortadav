@@ -10,7 +10,7 @@
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:         hortadav
  * Domain Path:         /languages
- * Version:             1.0.0
+ * Version:             1.1.0
  * Requires PHP:        7.4
  * Requires at least:   6.1
  */
